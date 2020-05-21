@@ -1,17 +1,28 @@
 from django.shortcuts import render
-from .models import StockMetaData
+from .models import StockMetaData, Ticker
 from .serializers import StockMetaDataSerializer
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
-from .services.alphaVintage import get_data, manage_metadata
+from .services.scheduler import scheduler
+from django_simple_task import defer
+import time
+import asyncio
 # Create your views here.
 
+'''
+def task1():
+    time.sleep(1)
+    print("task1 done")
+
+async def task2():
+    await asyncio.sleep(1)
+    print("task2 done")'''
 
 def stock_list(request):
-
+    #scheduler()
+    #defer(task1)
+    #defer(task2)
     if request.method == 'GET':
-        data = get_data()
-        manage_metadata(data)
         stocks = StockMetaData.objects.all()
         serializer = StockMetaDataSerializer(stocks, many=True)
         return JsonResponse(serializer.data, safe=False)
