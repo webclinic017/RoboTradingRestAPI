@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from ..models import StockMetaData, Ticker
+from ...models import StockMetaData, Ticker
 
 
 def get_data(symbol, api_key='H579PUKW0SVGRIK9'):

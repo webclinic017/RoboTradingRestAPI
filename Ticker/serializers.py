@@ -14,7 +14,7 @@ class TickerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ticker
-        fields = ['date', 'open', 'high', 'low', 'close', 'volume', 'indicators']
+        fields = '__all__'  # ['date', 'open', 'high', 'low', 'close', 'volume', 'indicators']
 
 
 class StockMetaDataSerializer(serializers.ModelSerializer):

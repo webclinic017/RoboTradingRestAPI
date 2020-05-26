@@ -3,25 +3,12 @@ from .models import StockMetaData, Ticker
 from .serializers import StockMetaDataSerializer
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
-from .services.scheduler import scheduler
-from django_simple_task import defer
-import time
-import asyncio
+from .services.scheduler import  scheduled_jobs
 # Create your views here.
 
-'''
-def task1():
-    time.sleep(1)
-    print("task1 done")
-
-async def task2():
-    await asyncio.sleep(1)
-    print("task2 done")'''
 
 def stock_list(request):
-    #scheduler()
-    #defer(task1)
-    #defer(task2)
+    scheduled_jobs()
     if request.method == 'GET':
         stocks = StockMetaData.objects.all()
         serializer = StockMetaDataSerializer(stocks, many=True)
